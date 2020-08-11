@@ -5,17 +5,19 @@
 	<link rel=stylesheet href="../src/reset.css">
 	<link rel=stylesheet href="lab.css">
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
 </head>
 <body class="paper">
 	<div id="app">
-		<input  v-model="number" type="number">
-		<input  v-model="row" type="number">
+		<input v-model="number" type="number" min="1">
+		<input v-model="row" type="number" min="1">
 		<div class="space"></div>
 		<h3>สูตรคูณแม่ {{number}}</h3>
 		<h5>แม่ก่อนหน้า -> แม่ {{before_number}}</h5>
-		<h3 v-for="i in r">{{number}} x {{i}} = {{x(i)}}</h3>
-		<h4>ผลรวม = {{sum(row)}}</h4>
-
+		<div class="all-row">
+			<h3 class="row" v-for="i in r">{{number}} x {{i}} = {{x(i)}}</h3>
+			<h4 class="sum">ผลรวมทั้งหมด = {{sum(row)}}</h4>
+		</div>
 	</div>
 
 	<script>
