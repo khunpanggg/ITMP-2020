@@ -22,7 +22,7 @@
 					'--l':l+'%'
 				}"
 					:data-pick="i == pick"
-					@click="check(i)"
+					@click="check(i == pick)"
 				></a-dot>
 			</main>
 		</section>
@@ -53,8 +53,29 @@
 				l:40,//ความสว่างของสีทั่วไปในรอบนี้
 			},
 			methods: {
-				check: function(i){
-					console.log(i)
+				check: function(e){
+					if(this.time > 0){
+						console.log(e)
+						//ทำให้เช็คก้อรว่าถูกมั้ย
+						if(e == true){
+							this.correct()
+						}
+						else{
+							this.incorrect()
+						}
+					}
+				},
+				correct: function(){
+					//เข้าด่านต่อไป
+					this.score+=100
+					this.row=rand(2,6)
+					this.h=rand(50,250)
+					this.pick=rand(1,this.row*this.row)
+					console.log('Correct!')
+				},
+				incorrect: function(){
+					this.score-=50
+					console.log('incorrect')
 				}
 			}
 		})
