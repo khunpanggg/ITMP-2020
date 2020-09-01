@@ -69,12 +69,14 @@
 					//เข้าด่านต่อไป
 					this.score+=100
 					this.row=rand(2,6)
-					this.h=rand(50,250)
+					this.h=rand(0,300)
 					this.pick=rand(1,this.row*this.row)
 					console.log('Correct!')
 				},
 				incorrect: function(){
 					this.score-=50
+					this.time--
+					this.pick=rand(1,this.row*this.row)
 					console.log('incorrect')
 				}
 			}
