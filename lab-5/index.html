@@ -41,7 +41,7 @@
 			let shift = (stop-start)+1
 			return Math.floor(Math.random()*100%shift)+start
 		}
-		
+		let fruitCount = 3
 		let nextFruitId= 3
 		let isRightArrow = 1
 		let speed = 1000
@@ -89,8 +89,14 @@
                             }
                             this.fruits[f].run = false
                         }
-
 					}
+					if (rand(1, 10) % 3 == 1) {
+						this.fruits.push({ id: fruitCount, type: 'red', pst: 1, run: true, step: 1 })
+						fruitCount++
+					} else if (rand(1, 10) % 3 == 0) {
+						this.fruits.push({ id: fruitCount, type: 'yellow', pst: 1, run: true, step: 1 })
+						fruitCount++
+					}// rendom เกิดใหม่
 				}
 			}
 		})
