@@ -16,13 +16,9 @@
 		<section id="canvas_main" 
 		:data-play="play">
 			<main>
-				<div class="box _path" 
-				v-for="i in 14" 
-				:data-pst="i"></div>
-				<div class="box _toggle" data-pst="10" data-isrightarrow="1"></div>
-
-				<div class="box _fruit" v-for="f in fruits" 
-				:data-pst="f.pst"></div>
+				<div class="box _path" v-for="i in 14" :data-pst="i"></div>
+				<div class="box _toggle" :data-pst="10" :data-isrightarrow="isRightArrow"></div>
+				<div class="box _fruit" v-for="f in fruits" :data-pst="f.pst" :data-type="f.type"></div>
 
 				<div class="box _origin"></div>
 				<div class="box _12" data-pst="12"></div>
@@ -59,7 +55,7 @@
 				score:0,
 				fruits:[
 					{id:1,type:'red',pst:5,run:true,step:1},
-					{id:2,type:'yellow',pst:2,run:true,step:1},
+					{id:2,type:'yellow',pst:2,run:true,step:1}
 				]
 			},
 			methods:{
@@ -71,7 +67,7 @@
 						this.isRightArrow = 1
 						console.log("isRightArrow = 1")
 					}
-				}
+				},
 			},
 			computed:{},
 			watch:{
@@ -80,9 +76,20 @@
 					for(let f in this.fruits){
 						let run = this.fruits[f].run
 						if (run) {
-							this.fruits[f].pst = this.fruits[f].pst+1
+							this.fruits[f].pst = this.fruits[f].pst + 1
 						}
-						//console.log(this.fruits[f].id)
+						if (this.fruits[f].pst == 10 && this.isRightArrow == 1) {
+                            this.fruits[f].step = 3
+                        }
+						if ((this.fruits[f].pst == 12 || this.fruits[f].pst == 16) && this.fruits[f].run == true) {
+                            if (this.fruits[f].type == 'red' && this.fruits[f].pst == 12) {
+                                this.score++
+                            } else if (this.fruits[f].type == 'yellow' && this.fruits[f].pst == 16) {
+                                this.score++
+                            }
+                            this.fruits[f].run = false
+                        }
+
 					}
 				}
 			}
