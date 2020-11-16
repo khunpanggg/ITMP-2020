@@ -1,0 +1,8 @@
+body {
+  background-color: rgb(187, 225, 212);
+  font-family: 'Kanit', sans-serif;
+}
+
+#app {
+  padding: 3.5em;
+}
